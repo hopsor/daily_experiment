@@ -19,6 +19,12 @@ config :daily_experiment, DailyExperiment.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :daily_experiment, DailyExperiment.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  ssl: true
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
@@ -55,6 +61,11 @@ config :logger, level: :info
 #
 #     config :daily_experiment, DailyExperiment.Endpoint, server: true
 #
+
+config :daily_experiment, GitHub,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+  redirect_uri: "http://daily-experiment.herokuapp.com/auth/github/callback"
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
