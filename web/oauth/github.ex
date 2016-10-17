@@ -21,8 +21,8 @@ defmodule GitHub do
     |> OAuth2.Client.new()
   end
 
-  def authorize_url!(params \\ []) do
-    OAuth2.Client.authorize_url!(client(), params)
+  def authorize_url! do
+    OAuth2.Client.authorize_url!(client(), scope: "user,repo")
   end
 
   def get_token!(params \\ [], headers \\ []) do
