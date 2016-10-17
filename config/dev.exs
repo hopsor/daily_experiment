@@ -41,3 +41,8 @@ config :daily_experiment, DailyExperiment.Repo,
   database: "daily_experiment_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :daily_experiment, GitHub,
+  redirect_uri: "http://localhost:4000/auth/github/callback"
+
+import_config "dev.secret.exs"
