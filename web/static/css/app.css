@@ -1,1 +1,33 @@
 /* This file is for your main application css. */
+
+html, body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+main{
+  height: 100%;
+}
+
+.landing{
+  background: url(/images/landing-bg.jpg);
+  background-size: cover;
+  height: 100%;
+  position: relative;
+}
+
+.landing h1 {
+  margin-top: 0;
+  color: white;
+  font-family: 'Open Sans';
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+.landing-box{
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  text-align: right;
+}

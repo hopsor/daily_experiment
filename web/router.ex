@@ -18,6 +18,7 @@ defmodule DailyExperiment.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/composer", PageController, :composer
   end
 
   scope "/auth", DailyExperiment do

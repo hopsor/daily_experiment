@@ -8,43 +8,33 @@
     <meta name="author" content="">
 
     <title>Hello DailyExperiment!</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+    <%= if @current_user do %>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Daily Experiment</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link "Logout", to: auth_path(@conn, :delete), method: :delete %></li>
           </ul>
-        </nav>
-        <span class="logo"></span>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <%= end %>
 
-        <%= if @current_user do %>
-          <h2>Welcome, <%= @current_user.name %>!</h2>
-          <img src="<%= @current_user.avatar %>" class="img-circle"/>
-          <%= link "Logout", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-danger" %>
-        <% else %>
-          <br>
-          <br>
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
 
-          <a class="btn btn-primary btn-lg" href="<%= auth_path @conn, :index, "github" %>">
-            <i class="fa fa-github"></i>
-            Sign in with GitHub
-          </a>
-
-        <% end %>
-      </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-
-    </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
